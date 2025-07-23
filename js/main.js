@@ -2,8 +2,19 @@ function init() {
   const $ = go.GraphObject.make;
 
   const diagram = $(go.Diagram, "diagramDiv", {
-    "undoManager.isEnabled": true
+    "undoManager.isEnabled": true,
+    grid: $(go.Panel, "Grid",
+      { gridCellSize: new go.Size(10, 10) },
+      $(go.Shape, "LineH", { stroke: "lightgray" }),
+      $(go.Shape, "LineV", { stroke: "lightgray" })
+    ),
+    "grid.visible": true,
+    "draggingTool.isGridSnapEnabled": true,
+    "resizingTool.isGridSnapEnabled": true,
+    "toolManager.mouseWheelBehavior": go.ToolManager.WheelZoom
   });
+
+  diagram.toolManager.panningTool.isEnabled = true;
 
   diagram.nodeTemplateMap.add("Normal",
     $(go.Node, "Auto",
@@ -61,5 +72,27 @@ function init() {
   document.getElementById("loadBtn").addEventListener("click", () => {
     const json = document.getElementById("jsonText").value;
     if (json) diagram.model = go.Model.fromJson(json);
+  });
+
+  document.getElementById("zoomInBtn").addEventListener("click", () => {
+    diagram.commandHandler.increaseZoom();
+  });
+
+  document.getElementById("zoomOutBtn").addEventListener("click", () => {
+    diagram.commandHandler.decreaseZoom();
+  });
+
+  document.addEventListener("keydown", (e) => {
+    if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === "z") {
+      e.preventDefault();
+      if (e.shiftKey) {
+        diagram.commandHandler.redo();
+      } else {
+        diagram.commandHandler.undo();
+      }
+    } else if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === "y") {
+      e.preventDefault();
+      diagram.commandHandler.redo();
+    }
   });
 }
