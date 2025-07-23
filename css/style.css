@@ -30,3 +30,35 @@ body {
     flex: 1;
     height: 100px;
 }
+
+.hidden {
+    display: none;
+}
+
+.visible {
+    display: block;
+}
+
+#palette [title] {
+    position: relative;
+    cursor: help;
+}
+
+#palette [title]::after {
+    content: attr(title);
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0, 0, 0, 0.75);
+    color: #fff;
+    padding: 2px 6px;
+    border-radius: 4px;
+    white-space: nowrap;
+    display: none;
+    z-index: 10;
+}
+
+#palette [title]:hover::after {
+    display: block;
+}
