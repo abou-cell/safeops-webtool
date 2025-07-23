@@ -26,6 +26,18 @@ body {
     display: flex;
     gap: 10px;
 }
+
+.controls button {
+    padding: 5px 10px;
+    background-color: #eee;
+    border: 1px solid #999;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.controls button:hover {
+    background-color: #ddd;
+}
 #jsonText {
     flex: 1;
     height: 100px;

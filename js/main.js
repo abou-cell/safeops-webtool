@@ -62,4 +62,28 @@ function init() {
     const json = document.getElementById("jsonText").value;
     if (json) diagram.model = go.Model.fromJson(json);
   });
+
+  document.getElementById("undoBtn").addEventListener("click", () => {
+    if (diagram.undoManager.canUndo()) diagram.undoManager.undo();
+  });
+
+  document.getElementById("redoBtn").addEventListener("click", () => {
+    if (diagram.undoManager.canRedo()) diagram.undoManager.redo();
+  });
+
+  document.getElementById("clearBtn").addEventListener("click", () => {
+    diagram.model = new go.GraphLinksModel();
+  });
+
+  document.getElementById("pngBtn").addEventListener("click", () => {
+    const img = diagram.makeImage({ background: "white" });
+    const w = window.open("");
+    if (w) w.document.body.appendChild(img);
+  });
+
+  document.getElementById("svgBtn").addEventListener("click", () => {
+    const svg = diagram.makeSvg({ background: "white" });
+    const w = window.open("");
+    if (w) w.document.body.appendChild(svg);
+  });
 }
