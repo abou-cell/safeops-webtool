@@ -62,4 +62,32 @@ function init() {
     const json = document.getElementById("jsonText").value;
     if (json) diagram.model = go.Model.fromJson(json);
   });
+
+  document.getElementById("fileInput").addEventListener("change", (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = (evt) => {
+      const json = evt.target.result;
+      if (json) {
+        try {
+          diagram.model = go.Model.fromJson(json);
+        } catch (err) {
+          console.error("Invalid JSON file", err);
+        }
+      }
+    };
+    reader.readAsText(file);
+  });
+
+  document.getElementById("downloadBtn").addEventListener("click", () => {
+    const json = diagram.model.toJson();
+    const blob = new Blob([json], { type: "application/json" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "diagram.json";
+    a.click();
+    URL.revokeObjectURL(url);
+  });
 }
