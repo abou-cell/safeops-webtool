@@ -5,6 +5,8 @@ function init() {
     "undoManager.isEnabled": true
   });
 
+  const overview = $(go.Overview, "overviewDiv", { observed: diagram });
+
   diagram.nodeTemplateMap.add("Normal",
     $(go.Node, "Auto",
       $(go.Shape, "RoundedRectangle", { fill: "lightblue" }),
