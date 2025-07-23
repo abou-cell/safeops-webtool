@@ -8,12 +8,16 @@
 </head>
 <body onload="init()">
 <div id="container">
-    <div id="palette" class="sidebar"></div>
+    <div id="paletteContainer" class="sidebar visible">
+        <input type="text" id="paletteSearch" placeholder="Rechercher...">
+        <div id="palette"></div>
+    </div>
     <div class="main">
         <div id="diagramDiv"></div>
         <div class="controls">
             <button id="saveBtn">Sauvegarder</button>
             <button id="loadBtn">Charger</button>
+            <button id="togglePaletteBtn">Masquer la palette</button>
             <textarea id="jsonText" placeholder="JSON"></textarea>
         </div>
     </div>
