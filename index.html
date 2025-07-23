@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="css/style.css">
     <script src="https://unpkg.com/gojs/release/go.js"></script>
 </head>
-<body onload="init()">
+<body data-theme="light" onload="init()">
 <div id="container">
     <div id="palette" class="sidebar"></div>
     <div class="main">
@@ -14,6 +14,7 @@
         <div class="controls">
             <button id="saveBtn">Sauvegarder</button>
             <button id="loadBtn">Charger</button>
+            <button id="themeToggle">Thème sombre</button>
             <textarea id="jsonText" placeholder="JSON"></textarea>
         </div>
     </div>

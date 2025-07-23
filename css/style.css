@@ -1,7 +1,31 @@
+# Default light theme variables
+:root {
+    --bg-color: #ffffff;
+    --text-color: #000000;
+    --node-normal-color: lightblue;
+    --node-emergency-color: orangered;
+    --node-decision-color: lightyellow;
+    --node-alarm-color: pink;
+    --node-startend-color: palegreen;
+}
+
 body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+}
+
+/* Dark theme overrides */
+[data-theme="dark"] {
+    --bg-color: #222222;
+    --text-color: #eeeeee;
+    --node-normal-color: #3a6ea5;
+    --node-emergency-color: #ff6347;
+    --node-decision-color: #bdb76b;
+    --node-alarm-color: #c71585;
+    --node-startend-color: #228b22;
 }
 #container {
     display: flex;
