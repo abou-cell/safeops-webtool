@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>SafeOps Flow Editor</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://unpkg.com/gojs/release/go.js"></script>
+</head>
+<body onload="init()">
+<div id="container">
+    <div id="palette" class="sidebar"></div>
+    <div class="main">
+        <div id="diagramDiv"></div>
+        <div class="controls">
+            <button id="saveBtn">Sauvegarder</button>
+            <button id="loadBtn">Charger</button>
+            <textarea id="jsonText" placeholder="JSON"></textarea>
+        </div>
+    </div>
+</div>
+<script src="js/main.js"></script>
+</body>
+</html>
