@@ -7,31 +7,76 @@ function init() {
 
   diagram.nodeTemplateMap.add("Normal",
     $(go.Node, "Auto",
-      $(go.Shape, "RoundedRectangle", { fill: "lightblue" }),
+      $(go.Shape, "RoundedRectangle",
+        {
+          fill: "lightblue",
+          portId: "",
+          fromLinkable: true,
+          toLinkable: true,
+          fromSpot: go.Spot.AllSides,
+          toSpot: go.Spot.AllSides,
+          cursor: "pointer"
+        }),
       $(go.TextBlock, { margin: 6 }, new go.Binding("text", "text"))
     ));
 
   diagram.nodeTemplateMap.add("Emergency",
     $(go.Node, "Auto",
-      $(go.Shape, "RoundedRectangle", { fill: "orangered" }),
+      $(go.Shape, "RoundedRectangle",
+        {
+          fill: "orangered",
+          portId: "",
+          fromLinkable: true,
+          toLinkable: true,
+          fromSpot: go.Spot.AllSides,
+          toSpot: go.Spot.AllSides,
+          cursor: "pointer"
+        }),
       $(go.TextBlock, { margin: 6 }, new go.Binding("text", "text"))
     ));
 
   diagram.nodeTemplateMap.add("Decision",
     $(go.Node, "Auto",
-      $(go.Shape, "Diamond", { fill: "lightyellow" }),
+      $(go.Shape, "Diamond",
+        {
+          fill: "lightyellow",
+          portId: "",
+          fromLinkable: true,
+          toLinkable: true,
+          fromSpot: go.Spot.AllSides,
+          toSpot: go.Spot.AllSides,
+          cursor: "pointer"
+        }),
       $(go.TextBlock, { margin: 6 }, new go.Binding("text", "text"))
     ));
 
   diagram.nodeTemplateMap.add("Alarm",
     $(go.Node, "Auto",
-      $(go.Shape, "Triangle", { fill: "pink" }),
+      $(go.Shape, "Triangle",
+        {
+          fill: "pink",
+          portId: "",
+          fromLinkable: true,
+          toLinkable: true,
+          fromSpot: go.Spot.AllSides,
+          toSpot: go.Spot.AllSides,
+          cursor: "pointer"
+        }),
       $(go.TextBlock, { margin: 6 }, new go.Binding("text", "text"))
     ));
 
   diagram.nodeTemplateMap.add("StartEnd",
     $(go.Node, "Auto",
-      $(go.Shape, "Ellipse", { fill: "palegreen" }),
+      $(go.Shape, "Ellipse",
+        {
+          fill: "palegreen",
+          portId: "",
+          fromLinkable: true,
+          toLinkable: true,
+          fromSpot: go.Spot.AllSides,
+          toSpot: go.Spot.AllSides,
+          cursor: "pointer"
+        }),
       $(go.TextBlock, { margin: 6 }, new go.Binding("text", "text"))
     ));
 
@@ -39,8 +84,41 @@ function init() {
     $(go.Link,
       { routing: go.Link.AvoidsNodes, corner: 5 },
       $(go.Shape),
-      $(go.Shape, { toArrow: "Standard" })
+      $(go.Shape, { toArrow: "Standard" }),
+      $(go.TextBlock,
+        { segmentOffset: new go.Point(0, -10), editable: true },
+        new go.Binding("text", "label").makeTwoWay())
     );
+
+  diagram.linkTemplateMap.add("Dashed",
+    $(go.Link,
+      { routing: go.Link.AvoidsNodes, corner: 5 },
+      $(go.Shape, { strokeDashArray: [6, 3] }),
+      $(go.Shape, { toArrow: "Standard" }),
+      $(go.TextBlock,
+        { segmentOffset: new go.Point(0, -10), editable: true },
+        new go.Binding("text", "label").makeTwoWay())
+    ));
+
+  diagram.linkTemplateMap.add("DoubleArrow",
+    $(go.Link,
+      { routing: go.Link.AvoidsNodes, corner: 5 },
+      $(go.Shape),
+      $(go.Shape, { fromArrow: "Standard", toArrow: "Standard" }),
+      $(go.TextBlock,
+        { segmentOffset: new go.Point(0, -10), editable: true },
+        new go.Binding("text", "label").makeTwoWay())
+    ));
+
+  diagram.linkTemplateMap.add("Curved",
+    $(go.Link,
+      { curve: go.Link.Bezier },
+      $(go.Shape),
+      $(go.Shape, { toArrow: "Standard" }),
+      $(go.TextBlock,
+        { segmentOffset: new go.Point(0, -10), editable: true },
+        new go.Binding("text", "label").makeTwoWay())
+    ));
 
   const palette = $(go.Palette, "palette", {
     nodeTemplateMap: diagram.nodeTemplateMap
